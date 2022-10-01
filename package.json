@@ -1,0 +1,17 @@
+{
+  "name": "ProgramacaoWebII",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AdrianDamiao/ProgramacaoWebII.git",
+  "author": "adriandamiao <adriandami_@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "dev": "nodemon index.js"
+  }
+}

@@ -1,0 +1,58 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{titulo}}</title>
+    </head>
+    <body>
+
+        <header>
+            <h1>{{titulo}}</h1>
+            <h3>Cadastro</h3>
+        </header>
+
+        <form method="post" action="/exercicio11">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" />
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" />
+            <br><br>
+            <label for="CPF">CPF:</label>
+            <input type="text" id="cpf" name="cpf" />
+            <br><br>
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" min="0"/>
+            <br><br>
+            <button type="submit">Enviar</button>
+        </form>
+
+
+        {{#if nome}}
+        <br>
+        <div>
+            <h3>Informações</h3>
+            <p>Nome: {{nome}}</p>
+            <p>Email: {{email}}</p>
+            <p>CPF: {{cpf}}</p>
+            <p>Idade: {{idade}}</p>
+        </div>
+        <br>
+        <div style="width: 50%;">
+            <span style="text-align: justify;">
+                O envio das seguintes informações ocorre através de um formulário do HTML que possui duas propriedades, <i>method</i>,
+                que define o método HTTP que será utilizado na requisição e <i>action</i>, que determina a URL que será utilizada.
+                Ao clicar no botão enviar, é submetida uma requisição para o servidor web, em que temos o Node rodando com o Express
+                instalado e este possui o mapeamento da URL passada no seu método HTTP e sua <i>action</i>, no nosso caso <b>POST localhost:3000/exercicio11</b>,
+                que executa uma função callback para tratar a requisição. Lá, os parâmetros passados no corpo da requisição são pegos e
+                passados para o template <b>exercicio11.hbs</b> durante sua renderização pelo HandleBars no final da execução dela e
+                assim, eles podem ser exibidos na tela através de do uso de um <i>double mustache</i>.
+            </span>
+        </div>
+        {{/if}}
+
+        <br>
+        <a href="/">Voltar a pagina principal</a>
+    </body>
+</html>

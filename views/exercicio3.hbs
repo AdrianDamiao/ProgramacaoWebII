@@ -1,0 +1,38 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{titulo}}</title>
+    </head>
+    <body>
+
+        <header>
+            <h1>{{titulo}}</h1>
+            <h3>Calculo de IMC</h3>
+        </header>
+
+        {{#if IMC}}
+        <div>
+            <h1>{{IMC}}</h1>
+            <h3>{{resposta}}</h3>
+            <hr>
+            <p>Peso Min: {{pesoMin}}</p>
+            <p>Peso Máx: {{pesoMax}}</p>
+            <p>Peso Médio: {{pesoMed}}</p>
+        </div>
+        {{/if}}
+
+        <form method="post" action="/exercicio3">
+            <label for="altura">Altura</label>
+            <input type="number" id="altura" name="altura" step="0.01"/>
+            <br><br>
+            <label for="peso">Peso</label>
+            <input type="number" id="peso" name="peso" step="0.01"/>
+            <br><br>
+            <button type="submit">Calcular</button>
+        </form>
+        <br>
+        <a href="/">Voltar a pagina principal</a>
+    </body>
+</html>
