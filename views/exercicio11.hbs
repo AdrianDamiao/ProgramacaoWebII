@@ -12,7 +12,7 @@
             <h3>Cadastro</h3>
         </header>
 
-        <form method="post" action="">
+        <form method="post" action="/exercicio11">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" />
             <br><br>
@@ -37,6 +37,18 @@
             <p>Email: {{email}}</p>
             <p>CPF: {{cpf}}</p>
             <p>Idade: {{idade}}</p>
+        </div>
+        <br>
+        <div style="width: 50%;">
+            <span style="text-align: justify;">
+                O envio das seguintes informações ocorre através de um formulário do HTML que possui duas propriedades, <i>method</i>,
+                que define o método HTTP que será utilizado na requisição e <i>action</i>, que determina a URL que será utilizada.
+                Ao clicar no botão enviar, é submetida uma requisição para o servidor web, em que temos o Node rodando com o Express
+                instalado e este possui o mapeamento da URL passada no seu método HTTP e sua <i>action</i>, no nosso caso <b>POST localhost:3000/exercicio11</b>,
+                que executa uma função callback para tratar a requisição. Lá, os parâmetros passados no corpo da requisição são pegos e
+                passados para o template <b>exercicio11.hbs</b> durante sua renderização pelo HandleBars no final da execução dela e
+                assim, eles podem ser exibidos na tela através de do uso de um <i>double mustache</i>.
+            </span>
         </div>
         {{/if}}
 
