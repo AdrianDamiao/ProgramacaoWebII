@@ -3,6 +3,7 @@ const expressHandlebars = require("express-handlebars");
 const path = require("path");
 const { addAbortSignal } = require("stream");
 const PORT = process.env.PORT || 3000;
+const Handlebars = require('handlebars');
 
 const app = express();
 
@@ -50,6 +51,15 @@ app.post("/exercicio1", (req, res) => {
 });
 
 // Exercício 2
+
+Handlebars.registerHelper("tabuada", (numero) => {
+  const tab = [];
+  for (let i = 1; i <= 10; i++) {
+    tab[i] = parseInt(numero) * i;
+  }
+  return tab;
+});
+
 app.get("/exercicio2", (req, res) => {
   const number = req.query.numberInput;
   console.log(number);
@@ -102,11 +112,9 @@ app.post("/exercicio3", (req, res) => {
 
   const resposta = analiseIMC(IMC);
 
-  const pesoMin = (18.5 * Math.pow(altura, 2)).toFixed(2);
-  const pesoMax = (24.9 * Math.pow(altura, 2)).toFixed(2);
-  const pesoMed = (pesoMin + pesoMax) / 2;
-  console.log(pesoMed);
-
+  const pesoMin = parseInt((18.5 * Math.pow(altura, 2)).toFixed(2));
+  const pesoMax = parseInt((24.9 * Math.pow(altura, 2)).toFixed(2));
+  const pesoMed = Number((pesoMin + pesoMax) / 2);
 
   res.render('exercicio3', { IMC, resposta, pesoMin, pesoMax, pesoMed, titulo: "Exercício 3" });
 });
@@ -164,7 +172,7 @@ app.post("/exercicio6", (req, res) => {
   const segundaNota = Number(req.body.nota2);
   const terceiraNota = Number(req.body.nota3);
 
-  const media = (primeiraNota + segundaNota + terceiraNota) / 3;
+  const media = parseInt((primeiraNota + segundaNota + terceiraNota) / 3).toFixed(2);
   let resultado;
 
   if (media >= 6)
@@ -195,6 +203,9 @@ app.post("/exercicio7", (req, res) => {
   } else if (horas <= horaRegular) {
     salarioTotal = horas * salario;
   }
+
+  salarioTotal = parseInt(salarioTotal).toFixed(2);
+
   res.render('exercicio7', { salarioTotal, titulo: "Exercício 7" });
 });
 
@@ -218,8 +229,91 @@ app.post("/exercicio8", (req, res) => {
     comissao += (valorDasVendas - 1500) * 0.05;
   }
 
-  const salarioAtual = salarioFixo + comissao;
+  const salarioAtual = parseInt(salarioFixo + comissao).toFixed(2);
   res.render('exercicio8', { salarioAtual, titulo: "Exercício 8" });
+});
+
+//Exercício 9
+app.get("/exercicio9", (req, res) => {
+  res.render("exercicio9", {
+    titulo: "Exercício 9",
+  });
+});
+
+app.post("/exercicio9", (req, res) => {
+  const litros = Number(req.body.litros);
+  const tipo = req.body.tCombustivel;
+
+  let valor;
+  let valorGasolina = litros * 3.30;
+  let valorAlcool = litros * 2.90;
+
+  if (tipo == "gasolina") {
+    if (litros > 20) {
+      valor = valorGasolina - (valorGasolina * 0.05);
+    }
+    else if (litros <= 20) {
+      valor = valorGasolina - (valorGasolina * 0.03);
+    }
+  } else if (tipo == "alcool") {
+    if (litros > 20) {
+      valor = valorAlcool - (valorAlcool * 0.06);
+    }
+    else if (litros <= 20) {
+      valor = valorAlcool - (valorAlcool * 0.04)
+    }
+  }
+
+  valor = parseInt(valor).toFixed(2);
+
+  res.render('exercicio9', { valor, titulo: "Exercício 9" });
+});
+
+//Exercício 10
+const podeAposentar = (idade, tempoDeTrabalho) => {
+  return (idade >= 65) || (tempoDeTrabalho >= 30) || (idade >= 60 && tempoDeTrabalho >= 25);
+}
+
+app.get("/exercicio10", (req, res) => {
+  res.render("exercicio10", {
+    titulo: "Exercício 10",
+  });
+});
+
+app.post("/exercicio10", (req, res) => {
+
+  const anoDeNascimento = Number(req.body.anoDeNascimento);
+  const anoDeIngresso = Number(req.body.anoDeIngresso);
+  let resposta;
+
+
+  const idadeDoFuncionario = (new Date().getFullYear() - parseInt(anoDeNascimento));
+  const tempoDeTrabalho = (new Date().getFullYear() - parseInt(anoDeIngresso));
+
+  if (idadeDoFuncionario >= tempoDeTrabalho) {
+    resposta = `${podeAposentar(idadeDoFuncionario, tempoDeTrabalho) ? 'REQUERER APOSENTADORIA' : 'NÃO REQUERER APOSENTADORIA'}`;
+  } else {
+    resposta = '<strong>A data de ingresso na empresa não pode ser menor que a data de nascimento!</strong>';
+  }
+
+  res.render('exercicio10', { idadeDoFuncionario, tempoDeTrabalho, resposta, titulo: "Exercício 10" });
+});
+
+//Exercício 11
+app.get("/exercicio11", (req, res) => {
+  res.render("exercicio11", {
+    titulo: "Exercício 11",
+  });
+});
+
+app.post("/exercicio11", (req, res) => {
+
+  const nome = req.body.nome;
+  const email = req.body.email;
+  const cpf = req.body.cpf;
+  const idade = req.body.idade;
+
+  res.render('exercicio11', { nome, email, cpf, idade, titulo: "Exercício 11" });
 });
 
 app.listen(PORT, () => {

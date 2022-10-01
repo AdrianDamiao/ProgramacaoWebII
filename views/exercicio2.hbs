@@ -12,12 +12,20 @@
         </header>
         <form method="get" action="">
             <label for="numberInput">Digite um número</label>
-            <input type="number" id="numberInput" name="numberInput" />
+            <input type="number" id="numberInput" name="numberInput" value={{number}} />
             <button type="submit" value="Register">Enviar</button>
         </form>
-        <ul>
-            <li>{{number}}</li>
-        </ul>
+
+        {{#if number}}
+            <div>
+                <h3>Tabuada do {{number}}</h3>
+                <ul>
+                    {{#each (tabuada number)}}
+                        <li>{{number}} {{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
         <a href="/">Voltar a pagina principal</a>
     </body>
 </html>
