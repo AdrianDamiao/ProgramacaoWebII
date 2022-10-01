@@ -12,15 +12,15 @@
             <h3>Calcular custo final do consumidor</h3>
         </header>
 
-        <form method="post" action="">
+        <form method="post" action="/exercicio4">
             <label for="precoFabrica">Custo de fábrica:</label>
-            <input type="number" id="precoFabrica" name="precoFabrica" min="0"/>
+            <input type="number" id="precoFabrica" name="precoFabrica" min="0" />
             <button type="submit">Calcular</button>
         </form>
 
         {{#if precoFinal}}
         <div>
-            <p>Custo final é R${{precoFinal}}</p>
+            <p>Custo final é R$ {{precoFinal}}</p>
         </div>
         {{/if}}
 

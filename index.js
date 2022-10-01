@@ -1,9 +1,10 @@
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
 const path = require("path");
-const { addAbortSignal } = require("stream");
-const PORT = process.env.PORT || 3000;
 const Handlebars = require('handlebars');
+
+const dotenv = require('dotenv');
+dotenv.config('./');
 
 const app = express();
 
@@ -28,15 +29,11 @@ app.get("/", (req, res) => {
 app.get("/exercicio1", (req, res) => {
   res.render("exercicio1", {
     titulo: "Exercício 1",
-    descricao:
-      "Crie um programa que receba um valor numérico de um formulário (POST) e exiba na tela se o valor é POSITIVO, NEGATIVO ou IGUAL A ZERO.",
   });
-
 });
 
 app.post("/exercicio1", (req, res) => {
   const valor = req.body.valor;
-  console.log(valor);
 
   let result;
   if (valor > 0) {
@@ -62,13 +59,12 @@ Handlebars.registerHelper("tabuada", (numero) => {
 
 app.get("/exercicio2", (req, res) => {
   const number = req.query.numberInput;
-  console.log(number);
 
   res.render("exercicio2", {
     titulo: "Exercício 2",
     descricao:
       "Crie um programa que ao receber um valor numérico de um formulário (GET) exiba a tabuada desse número na tela.",
-    number: number,
+    numero: number,
   });
 });
 
@@ -135,9 +131,7 @@ app.post("/exercicio4", (req, res) => {
 
   const precoFinal = Number(precoFabrica) + Number(precoFabrica * 0.28) + Number(precoFabrica * 0.45);
 
-  console.log(precoFinal);
-
-  res.render('exercicio4', { precoFinal, titulo: "Exercício 4" });
+  res.render('exercicio4', { precoFinal: precoFinal.toFixed(2), titulo: "Exercício 4" });
 });
 
 //Exercício 5
@@ -316,6 +310,6 @@ app.post("/exercicio11", (req, res) => {
   res.render('exercicio11', { nome, email, cpf, idade, titulo: "Exercício 11" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor Iniciado com sucesso na porta ${PORT}.`);
+app.listen(process.env.PORT, () => {
+  console.log(`Servidor Iniciado com sucesso na porta ${process.env.PORT}.`);
 });

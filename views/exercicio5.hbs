@@ -12,7 +12,7 @@
             <h3>Calcular novo salário</h3>
         </header>
 
-        <form method="post" action="">
+        <form method="post" action="/exercicio5">
             <label for="salario">Salário:</label>
             <input type="number" id="salario" name="salario" min="0"/>
             <br><br>
@@ -24,7 +24,7 @@
 
         {{#if salarioReajustado}}
         <div>
-            <p>O novo salário é R${{salarioReajustado}}</p>
+            <p>O novo salário é R$ {{salarioReajustado}}</p>
         </div>
         {{/if}}
 
