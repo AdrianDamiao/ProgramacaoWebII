@@ -310,6 +310,6 @@ app.post("/exercicio11", (req, res) => {
   res.render('exercicio11', { nome, email, cpf, idade, titulo: "Exercício 11" });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
   console.log(`Servidor Iniciado com sucesso na porta ${process.env.PORT}.`);
 });
