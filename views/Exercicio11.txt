@@ -1,0 +1,9 @@
+Resposta Exercicio 11
+
+O envio das seguintes informações ocorre através de um formulário do HTML que possui duas propriedades, method, 
+que define o método HTTP que será utilizado na requisição eaction, que determina a URL que será utilizada. Ao clicar no botão enviar, 
+é submetida uma requisição para o servidor web, em que temos o Node rodando com o Express instalado e este possui o mapeamento da URL passada no seu método HTTP e sua action, 
+no nosso caso POST localhost:3000/exercicio11, que executa uma função callback para tratar a requisição. 
+
+Lá, os parâmetros passados no corpo da requisição são pegos e passados para o template exercicio11.hbs durante sua renderização pelo HandleBars no final da execução dela e assim, 
+eles podem ser exibidos na tela através de do uso de um double mustache.
