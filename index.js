@@ -2,6 +2,7 @@ const express = require("express");
 const expressHandlebars = require("express-handlebars");
 const path = require("path");
 const Handlebars = require('handlebars');
+const PORT = 3000;
 
 const dotenv = require('dotenv');
 dotenv.config('./');
@@ -310,6 +311,6 @@ app.post("/exercicio11", (req, res) => {
   res.render('exercicio11', { nome, email, cpf, idade, titulo: "Exercício 11" });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Servidor Iniciado com sucesso na porta ${process.env.PORT}.`);
+app.listen(PORT, () => {
+  console.log(`Servidor Iniciado com sucesso na porta ${PORT}.`);
 });
